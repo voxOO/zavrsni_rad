@@ -65,15 +65,14 @@
              <?php
                 foreach ($posts as $post) {
             ?>
-            
-             <h2 class="blog-post-title"><?php echo $post['title']?></h2>
+             <a href="single-post.php?post_id=<?php echo($post['ID'])?>"><h2 class="blog-post-title"><?php echo $post['title']?></h2></a>
                 <p class="blog-post-meta"><?php echo $post['created_at']?> <a href="#">Mark</a></p>
                 <div>
                     <p><?php echo $post['body']?></p>
                 </div>
-            <?php
-                }
-            ?>
+        <?php
+            }
+        ?>
             <nav class="blog-pagination">
                 <a class="btn btn-outline-primary" href="#">Older</a>
                 <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
