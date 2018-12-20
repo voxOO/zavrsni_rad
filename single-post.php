@@ -63,13 +63,13 @@
                 $statement->setFetchMode(PDO::FETCH_ASSOC);
 
                 // punimo promenjivu sa rezultatom upita
-                $singleposts = $statement->fetch();
+                $singlepost = $statement->fetch();
 
                 // koristite var_dump kada god treba da proverite sadrzaj neke promenjive
                     //   echo '<pre>';
                     //   var_dump($posts);
                     //   echo '</pre>';
-                    $sql1="SELECT * from comments ";
+                    $sql1="SELECT * from comments WHERE id = {$_GET['post_id']}";
                     $statement1 =$connection->prepare($sql1);
                     $statement1->execute();
                     $statement1->setFetchMode(PDO::FETCH_ASSOC);
@@ -82,9 +82,10 @@
              <h2 class="blog-post-title"><?php echo $singlepost['title']?></h2>
                 <p class="blog-post-meta"><?php echo $singlepost['created_at']?> <a href="#">Mark</a></p>
                 <div>
-                    <p><?php echo $post['body'];?></p>
+                    <p><?php echo $singlepost['body'];?></p>
                 </div>
-                <div>
+                <button id="comment_button" class="btn btn-default"onclick="comments_function()">Hide comments</button>
+                <div id="comments_div">
                     <ul>
                         <?php
                             foreach ($comments as $comment) {
@@ -97,7 +98,7 @@
                         ?>
                     </ul>
                </div>
-           
+               <br>
             <nav class="blog-pagination">
                 <a class="btn btn-outline-primary" href="#">Older</a>
                 <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
@@ -118,4 +119,5 @@
 include 'footer.php';
 ?>
 </body>
+<script src="javascript/javascript.js"></script>
 </html>
