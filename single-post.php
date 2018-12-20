@@ -69,12 +69,13 @@
                     //   echo '<pre>';
                     //   var_dump($posts);
                     //   echo '</pre>';
-                    $sql1="SELECT * from comments WHERE id = {$_GET['post_id']}";
+                    $sql1="SELECT * from comments WHERE post_id = {$_GET['post_id']}";
                     $statement1 =$connection->prepare($sql1);
                     $statement1->execute();
                     $statement1->setFetchMode(PDO::FETCH_ASSOC);
 
                     $comments = $statement1->fetchAll();
+                    $post_id = $_GET['post_id'];
 
             ?>
              
@@ -84,6 +85,16 @@
                 <div>
                     <p><?php echo $singlepost['body'];?></p>
                 </div>
+
+                <form action="create_comment.php" method="POST">
+                    <label for="author">Name:</label>
+                    <input type="text" name="author"><br>
+                    <input type="text" hidden name="post_id" value="<?php echo $post_id?>"><br>
+                    <label for="text">Comment:</label><br>
+                    <textarea name="text" id="" cols="30" rows="10"></textarea><br>
+                    <input type="submit" value="Submit"><br>
+                </form>
+
                 <button id="comment_button" class="btn btn-default"onclick="comments_function()">Hide comments</button>
                 <div id="comments_div">
                     <ul>
