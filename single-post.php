@@ -119,6 +119,10 @@
                             };
                         ?>
                     </ul>
+                    <form action="delete_post.php" method="POST">
+                    <input type="text" hidden name=post_id value="<?php echo $post_id?>">
+                    <button class="btn btn-primary">Delete this post</button>
+                    </form>
                </div>
                <br>
             <nav class="blog-pagination">
