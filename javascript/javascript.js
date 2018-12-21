@@ -11,3 +11,4 @@ function comments_function() {
       document.getElementById("comment_button").innerHTML="Show comments";
     }
   } 
+

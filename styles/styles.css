@@ -27,4 +27,6 @@ h6,
     text-decoration: underline;
 }
 
-
+.warning {
+    margin-bottom: 0px;
+}

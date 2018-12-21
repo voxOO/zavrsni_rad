@@ -1,20 +1,24 @@
 <?php
 
-    if (empty($author =  $_POST['author'])) {
-        header('Location: http://localhost:8000/single-post.php?post_id='.$post_id);
+    $post_id=$_POST['post_id'];
+    $author =  $_POST['author'];
+    $text_comment= $_POST['text'];
+
+    if (empty($author)) {
+        header('Location: http://localhost:8000/single-post.php?post_id='.$post_id."&error=error");
+        return;
     }
-    if (empty($text_comment= $_POST['text'])) {
-        header('Location: http://localhost:8000/single-post.php?post_id='.$post_id);
+    if (empty($text_comment)) {
+        header('Location: http://localhost:8000/single-post.php?post_id='.$post_id."&error=error");
+        return;
     }
-    if (empty($post_id=$_POST['post_id'])) {
-        header('Location: http://localhost:8000/single-post.php?post_id='.$post_id);
-    }
+   
     //echo $post_id;
 
     // ako su mysql username/password i ime baze na vasim racunarima drugaciji
     // obavezno ih ovde zamenite
     $servername = "127.0.0.1";
-    $username = "root";
+    $username = "root"; 
     $password = "vivify";
     $dbname = "blog_zavrsni";
 

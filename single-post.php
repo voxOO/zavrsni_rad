@@ -15,6 +15,7 @@
     {
         echo $e->getMessage();
     }
+
 ?>
 
 <!doctype html>
@@ -88,14 +89,19 @@
 
                 <form action="create_comment.php" method="POST">
                     <label for="author">Name:</label>
-                    <input type="text" name="author"><br>
+                    <input id ="author_submitt" type="text" name="author"><br>
+                        <?php
+                            if (isset($_GET['error'])) {
+                                echo "<p class='warning alert alert-danger'>Please complete all fields</p>";  
+                            }
+                        ?>
                     <input type="text" hidden name="post_id" value="<?php echo $post_id?>"><br>
                     <label for="text">Comment:</label><br>
                     <textarea name="text" id="" cols="30" rows="10"></textarea><br>
                     <input type="submit" value="Submit"><br>
                 </form>
+                <button id="comment_button" class="btn btn-default" onclick="comments_function()">Hide comments</button>
 
-                <button id="comment_button" class="btn btn-default"onclick="comments_function()">Hide comments</button>
                 <div id="comments_div">
                     <ul>
                         <?php
@@ -104,6 +110,11 @@
                         <li>
                             <?php echo $comment['author']." ".$comment['text']."<hr>";?>
                         </li>
+                        <form action="delete_comment.php" method="POST">
+                        <input type="text" hidden name="comment_id" value="<?php echo $comment['ID']?>">
+                        <input type="text" hidden name="post_id" value="<?php echo $post_id?>">
+                        <button class="btn btn-default" >Delete comment</button>
+                        </form>
                         <?php
                             };
                         ?>
